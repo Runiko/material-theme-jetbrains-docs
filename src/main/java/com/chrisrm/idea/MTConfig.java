@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Chris Magnussen and Elior Boukhobza
+ * Copyright (c) 2018 Chris Magnussen and Elior Boukhobza
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,7 @@ public class MTConfig implements PersistentStateComponent<MTConfig> {
   // They are public so they can be serialized
   public String version;
 
-  public MTThemes selectedTheme = MTThemes.OCEANIC;
+  public MTThemesInterface selectedTheme = MTThemes.OCEANIC;
   public String highlightColor = ACCENT_COLOR;
   public boolean highlightColorEnabled = false;
   public Integer highlightThickness = 2;
@@ -137,11 +137,11 @@ public class MTConfig implements PersistentStateComponent<MTConfig> {
     return modified;
   }
 
-  public MTThemes getSelectedTheme() {
+  public MTThemesInterface getSelectedTheme() {
     return ObjectUtils.notNull(selectedTheme, MTThemes.OCEANIC);
   }
 
-  public void setSelectedTheme(final MTThemes selectedTheme) {
+  public void setSelectedTheme(final MTThemesInterface selectedTheme) {
     this.selectedTheme = selectedTheme;
   }
 

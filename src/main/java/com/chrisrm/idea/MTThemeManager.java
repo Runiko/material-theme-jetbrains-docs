@@ -29,7 +29,6 @@ package com.chrisrm.idea;
 import com.chrisrm.idea.messages.MaterialThemeBundle;
 import com.chrisrm.idea.utils.MTUiUtils;
 import com.chrisrm.idea.utils.UIReplacer;
-import com.google.common.collect.ImmutableList;
 import com.intellij.ide.plugins.PluginManager;
 import com.intellij.ide.ui.LafManager;
 import com.intellij.ide.ui.UISettings;
@@ -63,9 +62,6 @@ import javax.swing.text.html.StyleSheet;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import static com.chrisrm.idea.tabs.MTTabsPainterPatcherComponent.BOLD_TABS;
 import static com.chrisrm.idea.tabs.MTTabsPainterPatcherComponent.TABS_HEIGHT;
@@ -181,14 +177,7 @@ public final class MTThemeManager {
   public static final String DEFAULT_FONT = "Roboto";
   public static final int DEFAULT_STATUSBAR_PADDING = 8;
 
-  private final List<String> editorColorsSchemes;
-
   public MTThemeManager() {
-    final Collection<String> schemes = new ArrayList<>();
-    for (final MTThemes theme : MTThemes.values()) {
-      schemes.add(theme.getEditorColorsScheme());
-    }
-    editorColorsSchemes = ImmutableList.copyOf(schemes);
   }
 
   public static MTThemeManager getInstance() {
@@ -306,7 +295,7 @@ public final class MTThemeManager {
    * Activate selected theme or deactivate current
    */
   public void activate() {
-    final MTThemes mtTheme = MTConfig.getInstance().getSelectedTheme();
+    final MTThemesInterface mtTheme = MTConfig.getInstance().getSelectedTheme();
     if (!MTConfig.getInstance().isMaterialTheme()) {
       removeTheme(mtTheme);
       applyAccents(false);
@@ -325,8 +314,8 @@ public final class MTThemeManager {
    *
    * @param mtTheme
    */
-  public void activate(final MTThemes mtTheme, final boolean switchColorScheme) {
-    MTThemes newTheme = mtTheme;
+  public void activate(final MTThemesInterface mtTheme, final boolean switchColorScheme) {
+    MTThemesInterface newTheme = mtTheme;
     if (newTheme == null) {
       newTheme = MTThemes.OCEANIC;
     }
@@ -366,7 +355,7 @@ public final class MTThemeManager {
     UIReplacer.patchUI();
   }
 
-  private void switchScheme(final MTThemes mtTheme, final boolean switchColorScheme) {
+  private void switchScheme(final MTThemesInterface mtTheme, final boolean switchColorScheme) {
     if (switchColorScheme) {
       final EditorColorsScheme themeScheme = EditorColorsManager.getInstance().getScheme(mtTheme.getEditorColorsScheme());
       EditorColorsManager.getInstance().setGlobalScheme(themeScheme);
@@ -403,7 +392,7 @@ public final class MTThemeManager {
    *
    * @param mtTheme
    */
-  private void removeTheme(final MTThemes mtTheme) {
+  private void removeTheme(final MTThemesInterface mtTheme) {
     try {
       resetContrast();
 

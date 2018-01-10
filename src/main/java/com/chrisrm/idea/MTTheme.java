@@ -47,9 +47,9 @@ public abstract class MTTheme implements LafTheme, Serializable {
   private final String id;
   private final String editorColorsScheme;
   private final boolean dark;
-  private final MTThemes theme;
+  private final MTThemesInterface theme;
 
-  protected MTTheme(@NotNull final String id, @NotNull final String editorColorsScheme, final boolean dark, final MTThemes theme) {
+  protected MTTheme(@NotNull final String id, @NotNull final String editorColorsScheme, final boolean dark, final MTThemesInterface theme) {
     this.id = id;
     this.editorColorsScheme = editorColorsScheme;
     this.dark = dark;
@@ -137,7 +137,7 @@ public abstract class MTTheme implements LafTheme, Serializable {
 
   protected abstract String getBackgroundColorString();
 
-  public final MTThemes getTheme() {
+  public final MTThemesInterface getTheme() {
     return theme;
   }
 

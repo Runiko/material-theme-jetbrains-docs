@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Chris Magnussen and Elior Boukhobza
+ * Copyright (c) 2018 Chris Magnussen and Elior Boukhobza
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -44,6 +44,33 @@ public final class MTThemesComponent implements ApplicationComponent {
   @Override
   public void initComponent() {
     activateTheme();
+
+    //    MTThemes.addTheme(new MTThemesInterface() {
+    //      @Override
+    //      public String getEditorColorsScheme() {
+    //        return "Material Oceanic";
+    //      }
+    //
+    //      @Override
+    //      public MTTheme getTheme() {
+    //        return new MarioTheme();
+    //      }
+    //
+    //      @Override
+    //      public boolean isDark() {
+    //        return true;
+    //      }
+    //
+    //      @Override
+    //      public String getName() {
+    //        return "Mario";
+    //      }
+    //
+    //      @Override
+    //      public String getId() {
+    //        return "mt.custom";
+    //      }
+    //    });
 
     connect = ApplicationManager.getApplication().getMessageBus().connect();
     connect.subscribe(ConfigNotifier.CONFIG_TOPIC, mtConfig -> activateTheme());

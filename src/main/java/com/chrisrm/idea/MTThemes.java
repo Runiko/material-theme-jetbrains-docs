@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Chris Magnussen and Elior Boukhobza
+ * Copyright (c) 2018 Chris Magnussen and Elior Boukhobza
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,11 @@ package com.chrisrm.idea;
 
 import com.chrisrm.idea.themes.*;
 
-public enum MTThemes {
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
+
+public enum MTThemes implements MTThemesInterface {
   OCEANIC("OCEANIC", new MTOceanicTheme()),
   DARKER("DARKER", new MTDarkerTheme()),
   LIGHTER("LIGHTER", new MTLighterTheme()),
@@ -39,6 +43,14 @@ public enum MTThemes {
   ARC_DARK("ARC_DARK", new ArcDarkTheme()),
   ONE_DARK("ONE_DARK", new OneDarkTheme());
 
+  // Insert all our enum values into a THEMES_MAP
+  private static final Map<String, MTThemesInterface> THEMES_MAP = new TreeMap<>();
+
+  static {
+    for (final MTThemesInterface theme : values()) {
+      THEMES_MAP.put(theme.getName(), theme);
+    }
+  }
 
   private final String name;
   private final MTTheme mtTheme;
@@ -48,23 +60,42 @@ public enum MTThemes {
     this.mtTheme = mtTheme;
   }
 
+  @Override
   public String getEditorColorsScheme() {
     return mtTheme.getEditorColorsScheme();
   }
 
+  @Override
   public MTTheme getTheme() {
     return mtTheme;
   }
 
+  @Override
   public boolean isDark() {
     return mtTheme.isDark();
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getId() {
     return mtTheme.getId();
+  }
+
+  public static MTThemesInterface getThemeFor(final String themeName) {
+    return THEMES_MAP.get(themeName);
+  }
+
+  public static void addTheme(final MTThemesInterface themesInterface) {
+    if (!THEMES_MAP.containsKey(themesInterface.getName())) {
+      THEMES_MAP.put(themesInterface.getName(), themesInterface);
+    }
+  }
+
+  public static Collection<MTThemesInterface> getAllThemes() {
+    return THEMES_MAP.values();
   }
 }
