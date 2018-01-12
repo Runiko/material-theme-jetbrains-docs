@@ -37,10 +37,6 @@ import java.util.List;
 
 public class MTBundledTheme extends MTTheme implements Serializable {
   private List<MTThemeColor> colors;
-  //  private String id;
-  //  private String editorColorsScheme;
-  //  private boolean dark;
-  //  private MTThemesInterface theme;
 
   protected MTBundledTheme(@NotNull final String id,
                            @NotNull final String editorColorsScheme,
@@ -50,50 +46,8 @@ public class MTBundledTheme extends MTTheme implements Serializable {
   }
 
   public MTBundledTheme() {
-    this("mt.custom", "Material Oceanic", true, MTThemes.OCEANIC);
+    this("mt.custom", "External Theme", true, MTThemes.EXTERNAL);
   }
-
-  //  @Override
-  //  @NotNull
-  //  public String getEditorColorsScheme() {
-  //    return editorColorsScheme;
-  //  }
-  //
-  //  @Override
-  //  public void setEditorColorsScheme(final String editorColorsScheme) {
-  //    this.editorColorsScheme = editorColorsScheme;
-  //  }
-  //
-  //  @Override
-  //  @NotNull
-  //  public String getId() {
-  //    return id;
-  //  }
-  //
-  //  @Override
-  //  public void setId(final String id) {
-  //    this.id = id;
-  //  }
-  //
-  //  @Override
-  //  public boolean isDark() {
-  //    return dark;
-  //  }
-  //
-  //  @Override
-  //  public void setDark(final boolean dark) {
-  //    this.dark = dark;
-  //  }
-  //
-  //  @Override
-  //  public void setTheme(final MTThemesInterface theme) {
-  //    this.theme = theme;
-  //  }
-  //
-  //  @Override
-  //  public MTThemesInterface getTheme() {
-  //    return theme;
-  //  }
 
   public static String notificationsColor = "323232";
   public static String treeSelectionColor = "546E7A50";
@@ -215,8 +169,4 @@ public class MTBundledTheme extends MTTheme implements Serializable {
     return null;
   }
 
-  //  @Override
-  //  public String toString() {
-  //    return id;
-  //  }
 }

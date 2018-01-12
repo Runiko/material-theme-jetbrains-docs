@@ -31,6 +31,7 @@ import com.chrisrm.idea.themes.models.MTBundledTheme;
 import com.chrisrm.idea.themes.models.MTThemeColor;
 import com.intellij.openapi.components.ServiceManager;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.SingleValueConverter;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import java.net.URL;
@@ -57,8 +58,14 @@ public final class MTBundledThemesManager {
   public void loadBundledThemes() throws Exception {
     for (final BundledThemeEP ep : EP_NAME.getExtensions()) {
       final MTBundledTheme mtBundledTheme = loadBundledTheme(ep.path + ".xml", ep);
+      mtBundledTheme.setName(ep.name);
       getBundledThemes().add(mtBundledTheme);
     }
+  }
+
+  public MTTheme getActiveTheme() {
+    final MTThemesInterface selectedTheme = MTConfig.getInstance().getSelectedTheme();
+    return selectedTheme.getTheme();
   }
 
   private MTBundledTheme loadBundledTheme(final String resource, final BundledThemeEP ep) throws Exception {
@@ -68,7 +75,7 @@ public final class MTBundledThemesManager {
     }
 
     final XStream xStream = new XStream(new DomDriver());
-    xStream.alias("theme", MTBundledTheme.class);
+    xStream.alias("mtTheme", MTBundledTheme.class);
     xStream.alias("color", MTThemeColor.class);
 
     xStream.useAttributeFor(MTBundledTheme.class, "id");
@@ -76,6 +83,7 @@ public final class MTBundledThemesManager {
     xStream.useAttributeFor(MTBundledTheme.class, "dark");
     xStream.useAttributeFor(MTBundledTheme.class, "theme");
 
+    xStream.registerConverter(new MTThemesConverter());
 
     xStream.useAttributeFor(MTThemeColor.class, "id");
     xStream.useAttributeFor(MTThemeColor.class, "value");
@@ -84,6 +92,24 @@ public final class MTBundledThemesManager {
       return (MTBundledTheme) xStream.fromXML(url);
     } catch (final Exception e) {
       return new MTBundledTheme();
+    }
+  }
+
+  public static class MTThemesConverter implements SingleValueConverter {
+
+    @Override
+    public String toString(final Object obj) {
+      return ((MTThemes) obj).toString();
+    }
+
+    @Override
+    public Object fromString(final String str) {
+      return MTThemes.getThemeFor(str);
+    }
+
+    @Override
+    public boolean canConvert(final Class type) {
+      return type.equals(MTThemesInterface.class);
     }
   }
 }

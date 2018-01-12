@@ -41,7 +41,10 @@ public enum MTThemes implements MTThemesInterface {
   LIGHT_CUSTOM("LIGHT_CUSTOM", new MTLightCustomTheme()),
   MONOKAI("MONOKAI", new MonokaiTheme()),
   ARC_DARK("ARC_DARK", new ArcDarkTheme()),
-  ONE_DARK("ONE_DARK", new OneDarkTheme());
+  ONE_DARK("ONE_DARK", new OneDarkTheme()),
+
+  EXTERNAL("EXTERNAL", new MTCustomTheme());
+
 
   // Insert all our enum values into a THEMES_MAP
   private static final Map<String, MTThemesInterface> THEMES_MAP = new TreeMap<>();
@@ -53,7 +56,7 @@ public enum MTThemes implements MTThemesInterface {
   }
 
   private final String name;
-  private final MTTheme mtTheme;
+  private final transient MTTheme mtTheme;
 
   MTThemes(final String name, final MTTheme mtTheme) {
     this.name = name;
@@ -90,12 +93,46 @@ public enum MTThemes implements MTThemesInterface {
   }
 
   public static void addTheme(final MTThemesInterface themesInterface) {
-    if (!THEMES_MAP.containsKey(themesInterface.getName())) {
-      THEMES_MAP.put(themesInterface.getName(), themesInterface);
+    if (!THEMES_MAP.containsKey(themesInterface.getId())) {
+      THEMES_MAP.put(themesInterface.getId(), themesInterface);
     }
   }
 
   public static Collection<MTThemesInterface> getAllThemes() {
     return THEMES_MAP.values();
+  }
+
+  public static MTThemesInterface fromTheme(final MTTheme theme) {
+    return new MTThemesInterface() {
+      @Override
+      public String getEditorColorsScheme() {
+        return theme.getEditorColorsScheme();
+      }
+
+      @Override
+      public MTTheme getTheme() {
+        return theme;
+      }
+
+      @Override
+      public boolean isDark() {
+        return theme.isDark();
+      }
+
+      @Override
+      public String getName() {
+        return theme.getName();
+      }
+
+      @Override
+      public String getId() {
+        return theme.getId();
+      }
+    };
+  }
+
+  @Override
+  public String toString() {
+    return name;
   }
 }

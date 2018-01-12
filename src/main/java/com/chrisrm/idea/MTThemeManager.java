@@ -305,7 +305,7 @@ public final class MTThemeManager {
     activate(mtTheme, false);
   }
 
-  public void activate(final MTThemes mtTheme) {
+  public void activate(final MTThemesInterface mtTheme) {
     activate(mtTheme, false);
   }
 

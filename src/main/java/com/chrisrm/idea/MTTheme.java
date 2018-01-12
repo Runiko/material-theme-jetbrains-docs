@@ -44,16 +44,17 @@ import java.awt.*;
 import java.io.Serializable;
 
 public abstract class MTTheme implements LafTheme, Serializable {
-  private String id;
-  private String editorColorsScheme;
-  private boolean dark;
-  private MTThemesInterface theme;
+  private final String id;
+  private final String editorColorsScheme;
+  private final boolean dark;
+  private final MTThemesInterface theme;
+  private String name;
 
   protected MTTheme(@NotNull final String id, @NotNull final String editorColorsScheme, final boolean dark, final MTThemesInterface theme) {
-    setId(id);
-    setEditorColorsScheme(editorColorsScheme);
-    setDark(dark);
-    setTheme(theme);
+    this.id = id;
+    this.editorColorsScheme = editorColorsScheme;
+    this.dark = dark;
+    this.theme = theme;
   }
 
   @Override
@@ -136,6 +137,14 @@ public abstract class MTTheme implements LafTheme, Serializable {
   protected abstract String getForegroundColorString();
 
   protected abstract String getBackgroundColorString();
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(final String name) {
+    this.name = name;
+  }
 
   /**
    * Get notifications colors resources
@@ -463,29 +472,13 @@ public abstract class MTTheme implements LafTheme, Serializable {
     return editorColorsScheme;
   }
 
-  public void setEditorColorsScheme(final String editorColorsScheme) {
-    this.editorColorsScheme = editorColorsScheme;
-  }
-
   @NotNull
   public String getId() {
     return id;
   }
 
-  public void setId(final String id) {
-    this.id = id;
-  }
-
   public boolean isDark() {
     return dark;
-  }
-
-  public void setDark(final boolean dark) {
-    this.dark = dark;
-  }
-
-  public void setTheme(final MTThemesInterface theme) {
-    this.theme = theme;
   }
 
   public MTThemesInterface getTheme() {

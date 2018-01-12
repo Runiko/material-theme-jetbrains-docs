@@ -51,32 +51,6 @@ public final class MTThemesComponent implements ApplicationComponent {
     } catch (final Exception e) {
       e.printStackTrace();
     }
-    //    MTThemes.addTheme(new MTThemesInterface() {
-    //      @Override
-    //      public String getEditorColorsScheme() {
-    //        return "Material Oceanic";
-    //      }
-    //
-    //      @Override
-    //      public MTTheme getTheme() {
-    //        return new MarioTheme();
-    //      }
-    //
-    //      @Override
-    //      public boolean isDark() {
-    //        return true;
-    //      }
-    //
-    //      @Override
-    //      public String getName() {
-    //        return "Mario";
-    //      }
-    //
-    //      @Override
-    //      public String getId() {
-    //        return "mt.custom";
-    //      }
-    //    });
 
     connect = ApplicationManager.getApplication().getMessageBus().connect();
     connect.subscribe(ConfigNotifier.CONFIG_TOPIC, mtConfig -> activateTheme());
