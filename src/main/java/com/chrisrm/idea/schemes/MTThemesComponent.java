@@ -26,6 +26,7 @@
 
 package com.chrisrm.idea.schemes;
 
+import com.chrisrm.idea.MTBundledThemesManager;
 import com.chrisrm.idea.MTThemeManager;
 import com.chrisrm.idea.config.ConfigNotifier;
 import com.chrisrm.idea.config.CustomConfigNotifier;
@@ -45,6 +46,11 @@ public final class MTThemesComponent implements ApplicationComponent {
   public void initComponent() {
     activateTheme();
 
+    try {
+      MTBundledThemesManager.getInstance().loadBundledThemes();
+    } catch (final Exception e) {
+      e.printStackTrace();
+    }
     //    MTThemes.addTheme(new MTThemesInterface() {
     //      @Override
     //      public String getEditorColorsScheme() {

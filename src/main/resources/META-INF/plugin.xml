@@ -51,11 +51,16 @@
     <resource-bundle>messages.MaterialThemeBundle</resource-bundle>
     <resource-bundle>messages.FileColorsBundle</resource-bundle>
 
+    <extensionPoints>
+        <extensionPoint beanClass="com.chrisrm.idea.themes.BundledThemeEP" name="bundledTheme"/>
+    </extensionPoints>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.chrisrm.idea.MTConfig"/>
         <applicationService serviceImplementation="com.chrisrm.idea.MTCustomThemeConfig"/>
         <applicationService serviceImplementation="com.chrisrm.idea.MTThemeManager"/>
+        <applicationService serviceImplementation="com.chrisrm.idea.MTBundledThemesManager"/>
+
         <applicationService serviceImplementation="com.chrisrm.idea.icons.tinted.TintedIconsService"/>
         <applicationConfigurable instance="com.chrisrm.idea.config.MTConfigurable"
                                  groupId="appearance"
@@ -85,6 +90,12 @@
         <search.topHitProvider implementation="com.chrisrm.idea.config.MTConfigTopHitProvider"/>
 
         <colorSettingsPage implementation="com.chrisrm.idea.config.MTFileColorsPage"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.chrisrm.idea.MaterialThemeUI">
+        <bundledTheme name="Mario Theme" path="/themes/mario"/>
+        <bundledTheme name="Luigi Theme" path="/themes/luigi"/>
+
     </extensions>
 
     <application-components>

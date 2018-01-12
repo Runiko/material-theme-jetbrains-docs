@@ -44,16 +44,16 @@ import java.awt.*;
 import java.io.Serializable;
 
 public abstract class MTTheme implements LafTheme, Serializable {
-  private final String id;
-  private final String editorColorsScheme;
-  private final boolean dark;
-  private final MTThemesInterface theme;
+  private String id;
+  private String editorColorsScheme;
+  private boolean dark;
+  private MTThemesInterface theme;
 
   protected MTTheme(@NotNull final String id, @NotNull final String editorColorsScheme, final boolean dark, final MTThemesInterface theme) {
-    this.id = id;
-    this.editorColorsScheme = editorColorsScheme;
-    this.dark = dark;
-    this.theme = theme;
+    setId(id);
+    setEditorColorsScheme(editorColorsScheme);
+    setDark(dark);
+    setTheme(theme);
   }
 
   @Override
@@ -136,10 +136,6 @@ public abstract class MTTheme implements LafTheme, Serializable {
   protected abstract String getForegroundColorString();
 
   protected abstract String getBackgroundColorString();
-
-  public final MTThemesInterface getTheme() {
-    return theme;
-  }
 
   /**
    * Get notifications colors resources
@@ -456,25 +452,46 @@ public abstract class MTTheme implements LafTheme, Serializable {
     return ObjectUtils.notNull(UIManager.getColor("material.contrast"), defaultValue);
   }
 
-  @NotNull
-  public final String getEditorColorsScheme() {
-    return editorColorsScheme;
-  }
-
-  public final boolean isDark() {
-    return dark;
-  }
-
-  @NotNull
-  public final String getId() {
-    return id;
-  }
-
   private void buildResources(final String[] resources, final String color) {
     for (final String resource : resources) {
       UIManager.getDefaults().put(resource, PropertiesParser.parseColor(color));
     }
   }
+
+  @NotNull
+  public String getEditorColorsScheme() {
+    return editorColorsScheme;
+  }
+
+  public void setEditorColorsScheme(final String editorColorsScheme) {
+    this.editorColorsScheme = editorColorsScheme;
+  }
+
+  @NotNull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(final String id) {
+    this.id = id;
+  }
+
+  public boolean isDark() {
+    return dark;
+  }
+
+  public void setDark(final boolean dark) {
+    this.dark = dark;
+  }
+
+  public void setTheme(final MTThemesInterface theme) {
+    this.theme = theme;
+  }
+
+  public MTThemesInterface getTheme() {
+    return theme;
+  }
+
 
   /**
    * Get the theme id
