@@ -26,6 +26,7 @@
 
 package com.chrisrm.idea;
 
+import com.chrisrm.idea.themes.MTCustomTheme;
 import com.chrisrm.idea.themes.MTThemeable;
 import com.chrisrm.idea.utils.MTUiUtils;
 import com.chrisrm.idea.utils.PropertiesParser;
@@ -65,7 +66,7 @@ public abstract class MTAbstractTheme implements Serializable, MTThemeable {
   @NotNull
   @Override
   public String getSelectionBackground() {
-    return null;
+    return MTCustomTheme.SELECTION_BACKGROUND;
   }
 
   /**
@@ -74,7 +75,7 @@ public abstract class MTAbstractTheme implements Serializable, MTThemeable {
   @NotNull
   @Override
   public String getDisabled() {
-    return null;
+    return MTCustomTheme.DISABLED;
   }
   //endregion
 

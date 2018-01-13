@@ -57,7 +57,8 @@ public class MTQuickChangeThemeAction extends QuickSwitchSchemeAction {
   private static void addBundledTheme(final DefaultActionGroup group,
                                       final MTThemeable theme,
                                       final MTThemeable current) {
-    group.add(new DumbAwareAction(theme.getId(), theme.getEditorColorsScheme(), theme == current ? ourCurrentAction : ourNotCurrentAction) {
+    group.add(new DumbAwareAction(theme.getName(), theme.getEditorColorsScheme(),
+        theme == current ? ourCurrentAction : ourNotCurrentAction) {
       @Override
       public void actionPerformed(final AnActionEvent e) {
         if (MTThemes.getThemeFor(theme.getId()) == null) {

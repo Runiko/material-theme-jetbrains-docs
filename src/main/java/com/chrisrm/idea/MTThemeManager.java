@@ -342,6 +342,7 @@ public final class MTThemeManager {
       DarculaInstaller.install();
     } else {
       DarculaInstaller.uninstall();
+      DarculaInstaller.install();
     }
     LafManager.getInstance().updateUI();
 
@@ -548,7 +549,7 @@ public final class MTThemeManager {
     final URL url = selectedTheme.getClass().getResource(selectedTheme.getId() + (JBUI.isUsrHiDPI() ? "@2x.css" : ".css"));
     StyleSheet styleSheet = UIUtil.loadStyleSheet(url);
     if (styleSheet == null) {
-      final URL fallbackUrl = selectedTheme.getClass().getResource("darcula" + (JBUI.isUsrHiDPI() ? "@2x.css" : ".css"));
+      final URL fallbackUrl = DarculaLaf.class.getResource("darcula" + (JBUI.isUsrHiDPI() ? "@2x.css" : ".css"));
       styleSheet = UIUtil.loadStyleSheet(fallbackUrl);
     }
 
