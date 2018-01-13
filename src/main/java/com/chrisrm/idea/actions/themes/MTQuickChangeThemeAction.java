@@ -26,9 +26,9 @@
 package com.chrisrm.idea.actions.themes;
 
 import com.chrisrm.idea.MTBundledThemesManager;
-import com.chrisrm.idea.MTTheme;
 import com.chrisrm.idea.MTThemeManager;
 import com.chrisrm.idea.MTThemes;
+import com.chrisrm.idea.themes.MTThemeable;
 import com.chrisrm.idea.themes.models.MTBundledTheme;
 import com.intellij.ide.actions.QuickSwitchSchemeAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -48,15 +48,15 @@ public class MTQuickChangeThemeAction extends QuickSwitchSchemeAction {
   protected void fillActions(final Project project, @NotNull final DefaultActionGroup group, @NotNull final DataContext dataContext) {
     final MTBundledThemesManager manager = MTBundledThemesManager.getInstance();
     final List<MTBundledTheme> bundledThemes = manager.getBundledThemes();
-    final MTTheme current = manager.getActiveTheme();
+    final MTThemeable current = manager.getActiveTheme();
     for (final MTBundledTheme bundledTheme : bundledThemes) {
       addBundledTheme(group, bundledTheme, current);
     }
   }
 
   private static void addBundledTheme(final DefaultActionGroup group,
-                                      final MTTheme theme,
-                                      final MTTheme current) {
+                                      final MTThemeable theme,
+                                      final MTThemeable current) {
     group.add(new DumbAwareAction(theme.getId(), theme.getEditorColorsScheme(), theme == current ? ourCurrentAction : ourNotCurrentAction) {
       @Override
       public void actionPerformed(final AnActionEvent e) {

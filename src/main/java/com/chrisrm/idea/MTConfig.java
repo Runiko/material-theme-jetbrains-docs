@@ -30,6 +30,7 @@ import com.chrisrm.idea.config.BeforeConfigNotifier;
 import com.chrisrm.idea.config.ConfigNotifier;
 import com.chrisrm.idea.config.ui.ArrowsStyles;
 import com.chrisrm.idea.config.ui.MTForm;
+import com.chrisrm.idea.themes.MTThemeable;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
@@ -99,7 +100,7 @@ public class MTConfig implements PersistentStateComponent<MTConfig> {
   public static final int MIN_SIDEBAR_HEIGHT = 18;
 
   public MTConfig() {
-    final MTTheme theme = selectedTheme.getTheme();
+    final MTThemeable theme = selectedTheme.getTheme();
 
     try {
       final InputStream stream = getClass().getResourceAsStream(theme.getId() + ".properties");

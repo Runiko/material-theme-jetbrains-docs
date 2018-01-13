@@ -24,38 +24,66 @@
  *
  */
 
-package com.chrisrm.idea;
+package com.chrisrm.idea.themes;
 
-import com.chrisrm.idea.themes.MTThemeable;
-import com.chrisrm.idea.utils.PropertiesParser;
-import com.intellij.ide.ui.laf.IntelliJLaf;
 import org.jetbrains.annotations.NotNull;
 
-public class MTLightLaf extends IntelliJLaf {
+import java.awt.*;
 
-  private final MTThemeable theme;
-
-  public MTLightLaf(@NotNull final MTThemeable theme) {
-    super();
-    this.theme = theme;
-  }
-
+/**
+ * Interface for MTThemes
+ */
+public interface MTThemeable {
   /**
-   * Get Theme Prefix
+   * Activate the theme
    */
-  @Override
-  protected String getPrefix() {
-    return theme.getId();
-  }
+  void activate();
 
   /**
-   * Parse properties value
+   * Return the theme's name
    *
-   * @param key
-   * @param value
+   * @return
    */
-  @Override
-  protected Object parseValue(final String key, @NotNull final String value) {
-    return PropertiesParser.parseValue(key, value);
-  }
+  @NotNull
+  String getName();
+
+  /**
+   * Change the theme's name
+   *
+   * @param name
+   */
+  void setName(String name);
+
+  /**
+   * The theme's inherent color scheme
+   *
+   * @return
+   */
+  String getEditorColorsScheme();
+
+  /**
+   * The theme's unique ID
+   *
+   * @return
+   */
+  @NotNull
+  String getId();
+
+  /**
+   * Whether the theme is a dark theme
+   *
+   * @return
+   */
+  boolean isDark();
+
+  @NotNull
+  Color getBackgroundColor();
+
+  @NotNull
+  Color getBorderColor();
+
+  int getBorderThickness();
+
+  @NotNull
+  Color getContrastColor();
 }

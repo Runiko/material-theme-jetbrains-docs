@@ -26,7 +26,7 @@
 
 package com.chrisrm.idea.themes.models;
 
-import com.chrisrm.idea.MTTheme;
+import com.chrisrm.idea.MTAbstractTheme;
 import com.chrisrm.idea.MTThemes;
 import com.chrisrm.idea.MTThemesInterface;
 import com.intellij.util.ObjectUtils;
@@ -35,14 +35,14 @@ import org.jetbrains.annotations.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
-public class MTBundledTheme extends MTTheme implements Serializable {
+public class MTBundledTheme extends MTAbstractTheme implements Serializable {
   private List<MTThemeColor> colors;
 
   protected MTBundledTheme(@NotNull final String id,
                            @NotNull final String editorColorsScheme,
                            final boolean dark,
                            final MTThemesInterface theme) {
-    super(id, editorColorsScheme, dark, theme);
+    super(id, editorColorsScheme, dark);
   }
 
   public MTBundledTheme() {

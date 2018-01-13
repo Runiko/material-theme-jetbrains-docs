@@ -56,9 +56,9 @@ public enum MTThemes implements MTThemesInterface {
   }
 
   private final String name;
-  private final transient MTTheme mtTheme;
+  private final transient MTThemeable mtTheme;
 
-  MTThemes(final String name, final MTTheme mtTheme) {
+  MTThemes(final String name, final MTAbstractTheme mtTheme) {
     this.name = name;
     this.mtTheme = mtTheme;
   }
@@ -69,7 +69,7 @@ public enum MTThemes implements MTThemesInterface {
   }
 
   @Override
-  public MTTheme getTheme() {
+  public MTThemeable getTheme() {
     return mtTheme;
   }
 
@@ -102,7 +102,7 @@ public enum MTThemes implements MTThemesInterface {
     return THEMES_MAP.values();
   }
 
-  public static MTThemesInterface fromTheme(final MTTheme theme) {
+  public static MTThemesInterface fromTheme(final MTThemeable theme) {
     return new MTThemesInterface() {
       @Override
       public String getEditorColorsScheme() {
@@ -110,7 +110,7 @@ public enum MTThemes implements MTThemesInterface {
       }
 
       @Override
-      public MTTheme getTheme() {
+      public MTThemeable getTheme() {
         return theme;
       }
 

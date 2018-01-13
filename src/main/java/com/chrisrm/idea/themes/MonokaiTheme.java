@@ -26,10 +26,9 @@
 
 package com.chrisrm.idea.themes;
 
-import com.chrisrm.idea.MTTheme;
-import com.chrisrm.idea.MTThemes;
+import com.chrisrm.idea.MTAbstractTheme;
 
-public final class MonokaiTheme extends MTTheme implements LafTheme {
+public final class MonokaiTheme extends MTAbstractTheme implements LafTheme {
   public static final String BACKGROUND = "2D2A2E";
   public static final String FOREGROUND = "C1C0C0";
   public static final String CARET = "FCFCFA";
@@ -48,7 +47,7 @@ public final class MonokaiTheme extends MTTheme implements LafTheme {
   public static final String BUTTON_SELECTED = "59575A";
 
   public MonokaiTheme() {
-    super("monokai", "Material Monokai Pro", true, MTThemes.MONOKAI);
+    super("monokai", "Material Monokai Pro", true);
   }
 
   @Override

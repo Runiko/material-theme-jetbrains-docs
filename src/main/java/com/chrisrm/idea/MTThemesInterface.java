@@ -26,10 +26,12 @@
 
 package com.chrisrm.idea;
 
+import com.chrisrm.idea.themes.MTThemeable;
+
 public interface MTThemesInterface {
   String getEditorColorsScheme();
 
-  MTTheme getTheme();
+  MTThemeable getTheme();
 
   boolean isDark();
 

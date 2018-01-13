@@ -26,10 +26,9 @@
 
 package com.chrisrm.idea.themes;
 
-import com.chrisrm.idea.MTTheme;
-import com.chrisrm.idea.MTThemes;
+import com.chrisrm.idea.MTAbstractTheme;
 
-public final class ArcDarkTheme extends MTTheme implements LafTheme {
+public final class ArcDarkTheme extends MTAbstractTheme implements LafTheme {
   public static final String BACKGROUND = "383C4A"; // 38, 50, 56
   public static final String FOREGROUND = "D3DAE3"; // 176, 190, 197
   public static final String CARET = "FFCC00"; // 255, 204, 0
@@ -49,7 +48,7 @@ public final class ArcDarkTheme extends MTTheme implements LafTheme {
   public static final String ACCENT_COLOR = "80CBC4"; // 128, 203, 196
 
   public ArcDarkTheme() {
-    super("arc.dark", "Arc Dark", true, MTThemes.ARC_DARK);
+    super("arc.dark", "Arc Dark", true);
   }
 
   @Override

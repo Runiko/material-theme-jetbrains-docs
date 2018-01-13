@@ -26,11 +26,10 @@
 
 package com.chrisrm.idea.themes;
 
+import com.chrisrm.idea.MTAbstractTheme;
 import com.chrisrm.idea.MTCustomThemeConfig;
-import com.chrisrm.idea.MTTheme;
-import com.chrisrm.idea.MTThemes;
 
-public final class MTLightCustomTheme extends MTTheme implements LafTheme {
+public final class MTLightCustomTheme extends MTAbstractTheme implements LafTheme {
   public static final String BACKGROUND = "FAFAFA"; // 250, 250, 250
   public static final String FOREGROUND = "A7ADB0"; // 167, 173, 176
   public static final String CARET = "FFCC00"; // 255, 204, 0
@@ -63,7 +62,7 @@ public final class MTLightCustomTheme extends MTTheme implements LafTheme {
   }
 
   public MTLightCustomTheme() {
-    super("mt.light_custom", "Material Light Custom", false, MTThemes.LIGHT_CUSTOM);
+    super("mt.light_custom", "Material Light Custom", false);
   }
 
   @Override

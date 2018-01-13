@@ -27,6 +27,7 @@
 package com.chrisrm.idea;
 
 import com.chrisrm.idea.themes.BundledThemeEP;
+import com.chrisrm.idea.themes.MTThemeable;
 import com.chrisrm.idea.themes.models.MTBundledTheme;
 import com.chrisrm.idea.themes.models.MTThemeColor;
 import com.intellij.openapi.components.ServiceManager;
@@ -63,7 +64,7 @@ public final class MTBundledThemesManager {
     }
   }
 
-  public MTTheme getActiveTheme() {
+  public MTThemeable getActiveTheme() {
     final MTThemesInterface selectedTheme = MTConfig.getInstance().getSelectedTheme();
     return selectedTheme.getTheme();
   }

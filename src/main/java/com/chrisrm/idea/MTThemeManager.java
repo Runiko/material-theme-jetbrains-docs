@@ -27,6 +27,7 @@
 package com.chrisrm.idea;
 
 import com.chrisrm.idea.messages.MaterialThemeBundle;
+import com.chrisrm.idea.themes.MTThemeable;
 import com.chrisrm.idea.utils.MTUiUtils;
 import com.chrisrm.idea.utils.UIReplacer;
 import com.intellij.ide.plugins.PluginManager;
@@ -185,7 +186,7 @@ public final class MTThemeManager {
   }
 
   private static String getSettingsPrefix() {
-    final PluginId pluginId = PluginManager.getPluginByClassName(MTTheme.class.getName());
+    final PluginId pluginId = PluginManager.getPluginByClassName(MTAbstractTheme.class.getName());
     return pluginId == null ? "com.chrisrm.idea.MaterialThemeUI" : pluginId.getIdString();
   }
 
@@ -372,7 +373,7 @@ public final class MTThemeManager {
     UIManager.put("Focus.color", ColorUtil.toAlpha(accentColorColor, 70));
 
     //    if (reloadUI) {
-    //      final MTTheme mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
+    //      final MTAbstractTheme mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
     //      reloadUI(mtTheme);
     //    }
   }
@@ -472,7 +473,7 @@ public final class MTThemeManager {
    */
   private void applyContrast(final boolean reloadUI) {
     final boolean apply = MTConfig.getInstance().getIsContrastMode();
-    final MTTheme mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
+    final MTThemeable mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
     for (final String resource : CONTRASTED_RESOURCES) {
       final Color contrastedColor = apply ? mtTheme.getContrastColor() : mtTheme.getBackgroundColor();
       UIManager.put(resource, contrastedColor);
@@ -521,7 +522,7 @@ public final class MTThemeManager {
     UIManager.put("Tree.rowHeight", rowHeight);
 
     if (reloadUI) {
-      final MTTheme mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
+      final MTThemeable mtTheme = MTConfig.getInstance().getSelectedTheme().getTheme();
       reloadUI(mtTheme);
     }
   }
@@ -539,7 +540,7 @@ public final class MTThemeManager {
   private void patchStyledEditorKit() {
     final UIDefaults defaults = UIManager.getLookAndFeelDefaults();
     final MTConfig mtConfig = MTConfig.getInstance();
-    final MTTheme selectedTheme = mtConfig.getSelectedTheme().getTheme();
+    final MTThemeable selectedTheme = mtConfig.getSelectedTheme().getTheme();
 
     // Load css
     final URL url = selectedTheme.getClass().getResource(selectedTheme.getId() + (JBUI.isUsrHiDPI() ? "@2x.css" : ".css"));
@@ -574,11 +575,6 @@ public final class MTThemeManager {
     PropertiesComponent.getInstance().setValue(BOLD_TABS, MTConfig.getInstance().isUpperCaseTabs(), DEFAULT_IS_BOLD_TABS);
   }
 
-  public void setHackToolWindow(final boolean newValue) {
-    //    PropertiesComponent.getInstance().setValue(WINDOW_HEADER_HACK, newValue, false);
-    //    askForRestart();
-
-  }
   //endregion
 
   /**
@@ -586,7 +582,7 @@ public final class MTThemeManager {
    *
    * @param mtTheme
    */
-  private void reloadUI(final MTTheme mtTheme) {
+  private void reloadUI(final MTThemeable mtTheme) {
     try {
       UIManager.setLookAndFeel(new MTLaf(MTConfig.getInstance().getSelectedTheme().getTheme()));
 
