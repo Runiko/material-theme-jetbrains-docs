@@ -27,15 +27,57 @@
 package com.chrisrm.idea;
 
 import com.chrisrm.idea.themes.MTThemeable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public interface MTThemesInterface {
-  String getEditorColorsScheme();
+/**
+ * Facade for the users' selected themes
+ */
+public interface MTThemeFacade {
+  /**
+   * The internal theme's color scheme
+   *
+   * @return
+   */
+  @NotNull
+  String getThemeColorScheme();
 
+  /**
+   * The intrrnal theme
+   *
+   * @return
+   */
+  @NotNull
   MTThemeable getTheme();
 
-  boolean isDark();
+  /**
+   * The internal theme isDark
+   *
+   * @return
+   */
+  boolean getThemeIsDark();
 
+  /**
+   * The enum name
+   *
+   * @return
+   */
+  @NotNull
   String getName();
 
-  String getId();
+  /**
+   * The internal theme name
+   *
+   * @return
+   */
+  @Nullable
+  String getThemeName();
+
+  /**
+   * The internal theme id
+   *
+   * @return
+   */
+  @NotNull
+  String getThemeId();
 }

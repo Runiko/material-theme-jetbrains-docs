@@ -27,12 +27,17 @@
 package com.chrisrm.idea;
 
 import com.chrisrm.idea.themes.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
-public enum MTThemes implements MTThemesInterface {
+/**
+ * Facade for accessing internal theme's methods.
+ * Contains a list of predefined themes and will contain all bundled themes
+ */
+public enum MTThemes implements MTThemeFacade {
   OCEANIC("OCEANIC", new MTOceanicTheme()),
   DARKER("DARKER", new MTDarkerTheme()),
   LIGHTER("LIGHTER", new MTLighterTheme()),
@@ -47,15 +52,21 @@ public enum MTThemes implements MTThemesInterface {
 
 
   // Insert all our enum values into a THEMES_MAP
-  private static final Map<String, MTThemesInterface> THEMES_MAP = new TreeMap<>();
+  private static final Map<String, MTThemeFacade> THEMES_MAP = new TreeMap<>();
 
   static {
-    for (final MTThemesInterface theme : values()) {
+    for (final MTThemeFacade theme : values()) {
       THEMES_MAP.put(theme.getName(), theme);
     }
   }
 
+  /**
+   * The name of the theme (uppercase)
+   */
   private final String name;
+  /**
+   * The instance of MTThemeable
+   */
   private final transient MTThemeable mtTheme;
 
   MTThemes(final String name, final MTAbstractTheme mtTheme) {
@@ -63,69 +74,109 @@ public enum MTThemes implements MTThemesInterface {
     this.mtTheme = mtTheme;
   }
 
+  @NotNull
   @Override
-  public String getEditorColorsScheme() {
+  public String getThemeColorScheme() {
     return mtTheme.getEditorColorsScheme();
   }
 
+  @NotNull
   @Override
   public MTThemeable getTheme() {
     return mtTheme;
   }
 
   @Override
-  public boolean isDark() {
+  public boolean getThemeIsDark() {
     return mtTheme.isDark();
   }
 
+  @NotNull
   @Override
   public String getName() {
     return name;
   }
 
   @Override
-  public String getId() {
+  public String getThemeName() {
+    return mtTheme.getName();
+  }
+
+  @NotNull
+  @Override
+  public String getThemeId() {
     return mtTheme.getId();
   }
 
-  public static MTThemesInterface getThemeFor(final String themeName) {
-    return THEMES_MAP.get(themeName);
+  /**
+   * Find for a native theme or a bundled theme by its id
+   *
+   * @param themeID
+   * @return
+   */
+  public static MTThemeFacade getThemeFor(final String themeID) {
+    return THEMES_MAP.get(themeID);
   }
 
-  public static void addTheme(final MTThemesInterface themesInterface) {
-    if (!THEMES_MAP.containsKey(themesInterface.getId())) {
-      THEMES_MAP.put(themesInterface.getId(), themesInterface);
+  /**
+   * Add a new theme to the enum
+   *
+   * @param themesInterface
+   */
+  public static void addTheme(final MTThemeFacade themesInterface) {
+    if (!THEMES_MAP.containsKey(themesInterface.getThemeId())) {
+      THEMES_MAP.put(themesInterface.getThemeId(), themesInterface);
     }
   }
 
-  public static Collection<MTThemesInterface> getAllThemes() {
+  /**
+   * Get the list of all themes (native + bundled)
+   *
+   * @return
+   */
+  public static Collection<MTThemeFacade> getAllThemes() {
     return THEMES_MAP.values();
   }
 
-  public static MTThemesInterface fromTheme(final MTThemeable theme) {
-    return new MTThemesInterface() {
+  /**
+   * Generate a themeFacade from a theme
+   *
+   * @param theme
+   * @return
+   */
+  public static MTThemeFacade fromTheme(final MTThemeable theme) {
+    return new MTThemeFacade() {
+      @NotNull
       @Override
-      public String getEditorColorsScheme() {
+      public String getThemeColorScheme() {
         return theme.getEditorColorsScheme();
       }
 
+      @NotNull
       @Override
       public MTThemeable getTheme() {
         return theme;
       }
 
       @Override
-      public boolean isDark() {
+      public boolean getThemeIsDark() {
         return theme.isDark();
       }
 
+      @NotNull
       @Override
       public String getName() {
-        return theme.getName();
+        return theme.getId();
       }
 
       @Override
-      public String getId() {
+      public String getThemeName() {
+        return theme.getName();
+      }
+
+      @NotNull
+      @Override
+      public String getThemeId() {
         return theme.getId();
       }
     };

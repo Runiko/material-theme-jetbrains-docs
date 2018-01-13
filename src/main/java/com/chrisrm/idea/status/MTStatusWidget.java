@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2017 Chris Magnussen and Elior Boukhobza
+ * Copyright (c) 2018 Chris Magnussen and Elior Boukhobza
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -93,7 +93,7 @@ public final class MTStatusWidget extends JComponent implements CustomStatusBarW
 
   @Override
   public void paintComponent(final Graphics g) {
-    final String themeName = mtConfig.getSelectedTheme().getEditorColorsScheme();
+    final String themeName = mtConfig.getSelectedTheme().getThemeColorScheme();
 
     if (myBufferedImage == null) {
       final Dimension size = getSize();
@@ -131,7 +131,7 @@ public final class MTStatusWidget extends JComponent implements CustomStatusBarW
 
   @Override
   public Dimension getPreferredSize() {
-    final String themeName = mtConfig.getSelectedTheme().getEditorColorsScheme();
+    final String themeName = mtConfig.getSelectedTheme().getThemeColorScheme();
     final int width = getFontMetrics(MTUiUtils.getWidgetFont()).charsWidth(themeName.toCharArray(), 0,
         themeName.length()) + 2 * MTUiUtils.PADDING;
     return new Dimension(width, MTUiUtils.HEIGHT);
@@ -148,7 +148,7 @@ public final class MTStatusWidget extends JComponent implements CustomStatusBarW
   }
 
   void refresh() {
-    this.repaint();
-    this.updateUI();
+    repaint();
+    updateUI();
   }
 }

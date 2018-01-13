@@ -65,7 +65,7 @@ public final class MTBundledThemesManager {
   }
 
   public MTThemeable getActiveTheme() {
-    final MTThemesInterface selectedTheme = MTConfig.getInstance().getSelectedTheme();
+    final MTThemeFacade selectedTheme = MTConfig.getInstance().getSelectedTheme();
     return selectedTheme.getTheme();
   }
 
@@ -110,7 +110,7 @@ public final class MTBundledThemesManager {
 
     @Override
     public boolean canConvert(final Class type) {
-      return type.equals(MTThemesInterface.class);
+      return type.equals(MTThemeFacade.class);
     }
   }
 }

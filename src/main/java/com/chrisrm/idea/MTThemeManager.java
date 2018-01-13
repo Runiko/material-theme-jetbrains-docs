@@ -296,7 +296,7 @@ public final class MTThemeManager {
    * Activate selected theme or deactivate current
    */
   public void activate() {
-    final MTThemesInterface mtTheme = MTConfig.getInstance().getSelectedTheme();
+    final MTThemeFacade mtTheme = MTConfig.getInstance().getSelectedTheme();
     if (!MTConfig.getInstance().isMaterialTheme()) {
       removeTheme(mtTheme);
       applyAccents(false);
@@ -306,7 +306,7 @@ public final class MTThemeManager {
     activate(mtTheme, false);
   }
 
-  public void activate(final MTThemesInterface mtTheme) {
+  public void activate(final MTThemeFacade mtTheme) {
     activate(mtTheme, false);
   }
 
@@ -315,8 +315,8 @@ public final class MTThemeManager {
    *
    * @param mtTheme
    */
-  public void activate(final MTThemesInterface mtTheme, final boolean switchColorScheme) {
-    MTThemesInterface newTheme = mtTheme;
+  public void activate(final MTThemeFacade mtTheme, final boolean switchColorScheme) {
+    MTThemeFacade newTheme = mtTheme;
     if (newTheme == null) {
       newTheme = MTThemes.OCEANIC;
     }
@@ -329,7 +329,7 @@ public final class MTThemeManager {
     // Because the DarculaInstaller overrides this
     final EditorColorsScheme currentScheme = EditorColorsManager.getInstance().getGlobalScheme();
 
-    PropertiesComponent.getInstance().setValue(getSettingsPrefix() + ".theme", newTheme.getId());
+    PropertiesComponent.getInstance().setValue(getSettingsPrefix() + ".theme", newTheme.getThemeId());
     applyContrast(false);
     applyCompactSidebar(false);
     applyCustomTreeIndent();
@@ -356,9 +356,9 @@ public final class MTThemeManager {
     UIReplacer.patchUI();
   }
 
-  private void switchScheme(final MTThemesInterface mtTheme, final boolean switchColorScheme) {
+  private void switchScheme(final MTThemeFacade mtTheme, final boolean switchColorScheme) {
     if (switchColorScheme) {
-      final EditorColorsScheme themeScheme = EditorColorsManager.getInstance().getScheme(mtTheme.getEditorColorsScheme());
+      final EditorColorsScheme themeScheme = EditorColorsManager.getInstance().getScheme(mtTheme.getThemeColorScheme());
       EditorColorsManager.getInstance().setGlobalScheme(themeScheme);
     }
   }
@@ -393,7 +393,7 @@ public final class MTThemeManager {
    *
    * @param mtTheme
    */
-  private void removeTheme(final MTThemesInterface mtTheme) {
+  private void removeTheme(final MTThemeFacade mtTheme) {
     try {
       resetContrast();
 
@@ -403,8 +403,8 @@ public final class MTThemeManager {
         UIManager.setLookAndFeel(new IntelliJLaf());
       }
 
-      JBColor.setDark(mtTheme.isDark());
-      IconLoader.setUseDarkIcons(mtTheme.isDark());
+      JBColor.setDark(mtTheme.getThemeIsDark());
+      IconLoader.setUseDarkIcons(mtTheme.getThemeIsDark());
       PropertiesComponent.getInstance().unsetValue(getSettingsPrefix() + ".theme");
 
       // We need this to update parts of the UI that do not change
