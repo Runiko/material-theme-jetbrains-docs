@@ -82,9 +82,6 @@ public final class MTBundledThemesManager {
     xStream.useAttributeFor(MTBundledTheme.class, "id");
     xStream.useAttributeFor(MTBundledTheme.class, "editorColorsScheme");
     xStream.useAttributeFor(MTBundledTheme.class, "dark");
-    xStream.useAttributeFor(MTBundledTheme.class, "theme");
-
-    xStream.registerConverter(new MTThemesConverter());
 
     xStream.useAttributeFor(MTThemeColor.class, "id");
     xStream.useAttributeFor(MTThemeColor.class, "value");

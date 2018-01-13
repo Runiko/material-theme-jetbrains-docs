@@ -359,7 +359,9 @@ public final class MTThemeManager {
   private void switchScheme(final MTThemeFacade mtTheme, final boolean switchColorScheme) {
     if (switchColorScheme) {
       final EditorColorsScheme themeScheme = EditorColorsManager.getInstance().getScheme(mtTheme.getThemeColorScheme());
-      EditorColorsManager.getInstance().setGlobalScheme(themeScheme);
+      if (themeScheme != null) {
+        EditorColorsManager.getInstance().setGlobalScheme(themeScheme);
+      }
     }
   }
 

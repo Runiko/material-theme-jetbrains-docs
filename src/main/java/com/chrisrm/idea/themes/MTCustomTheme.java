@@ -28,8 +28,9 @@ package com.chrisrm.idea.themes;
 
 import com.chrisrm.idea.MTAbstractTheme;
 import com.chrisrm.idea.MTCustomThemeConfig;
+import org.jetbrains.annotations.NotNull;
 
-public final class MTCustomTheme extends MTAbstractTheme implements LafTheme {
+public final class MTCustomTheme extends MTAbstractTheme {
   public static final String BACKGROUND = "263238"; // 38, 50, 56
   public static final String FOREGROUND = "B0BEC5"; // 176, 190, 197
   public static final String CARET = "FFCC00"; // 255, 204, 0
@@ -52,11 +53,13 @@ public final class MTCustomTheme extends MTAbstractTheme implements LafTheme {
     super("mt.custom", "Material Custom Theme", true);
   }
 
+  @NotNull
   @Override
   public String getSelectionBackground() {
     return SELECTION_BACKGROUND;
   }
 
+  @NotNull
   @Override
   public String getDisabled() {
     return DISABLED;

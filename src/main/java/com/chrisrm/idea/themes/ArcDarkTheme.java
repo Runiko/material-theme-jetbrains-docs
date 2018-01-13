@@ -27,8 +27,9 @@
 package com.chrisrm.idea.themes;
 
 import com.chrisrm.idea.MTAbstractTheme;
+import org.jetbrains.annotations.NotNull;
 
-public final class ArcDarkTheme extends MTAbstractTheme implements LafTheme {
+public final class ArcDarkTheme extends MTAbstractTheme {
   public static final String BACKGROUND = "383C4A"; // 38, 50, 56
   public static final String FOREGROUND = "D3DAE3"; // 176, 190, 197
   public static final String CARET = "FFCC00"; // 255, 204, 0
@@ -51,11 +52,13 @@ public final class ArcDarkTheme extends MTAbstractTheme implements LafTheme {
     super("arc.dark", "Arc Dark", true);
   }
 
+  @NotNull
   @Override
   public String getSelectionBackground() {
     return SELECTION_BACKGROUND;
   }
 
+  @NotNull
   @Override
   public String getDisabled() {
     return DISABLED;

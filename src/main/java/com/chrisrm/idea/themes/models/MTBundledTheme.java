@@ -27,8 +27,6 @@
 package com.chrisrm.idea.themes.models;
 
 import com.chrisrm.idea.MTAbstractTheme;
-import com.chrisrm.idea.MTThemeFacade;
-import com.chrisrm.idea.MTThemes;
 import com.intellij.util.ObjectUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,15 +36,14 @@ import java.util.List;
 public class MTBundledTheme extends MTAbstractTheme implements Serializable {
   private List<MTThemeColor> colors;
 
-  protected MTBundledTheme(@NotNull final String id,
-                           @NotNull final String editorColorsScheme,
-                           final boolean dark,
-                           final MTThemeFacade theme) {
-    super(id, editorColorsScheme, dark);
+  public MTBundledTheme() {
+    this("mt.custom", "External Theme", true);
   }
 
-  public MTBundledTheme() {
-    this("mt.custom", "External Theme", true, MTThemes.EXTERNAL);
+  protected MTBundledTheme(@NotNull final String id,
+                           @NotNull final String editorColorsScheme,
+                           final boolean dark) {
+    super(id, editorColorsScheme, dark);
   }
 
   public static String notificationsColor = "323232";

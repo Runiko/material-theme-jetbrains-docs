@@ -86,4 +86,10 @@ public interface MTThemeable {
 
   @NotNull
   Color getContrastColor();
+
+  @NotNull
+  String getSelectionBackground();
+
+  @NotNull
+  String getDisabled();
 }

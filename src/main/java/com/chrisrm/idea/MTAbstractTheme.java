@@ -26,7 +26,6 @@
 
 package com.chrisrm.idea;
 
-import com.chrisrm.idea.themes.LafTheme;
 import com.chrisrm.idea.themes.MTThemeable;
 import com.chrisrm.idea.utils.MTUiUtils;
 import com.chrisrm.idea.utils.PropertiesParser;
@@ -44,7 +43,7 @@ import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.io.Serializable;
 
-public abstract class MTAbstractTheme implements LafTheme, Serializable, MTThemeable {
+public abstract class MTAbstractTheme implements Serializable, MTThemeable {
   private final String id;
   private final String editorColorsScheme;
   private final boolean dark;
@@ -63,6 +62,7 @@ public abstract class MTAbstractTheme implements LafTheme, Serializable, MTTheme
   }
 
   //region LafManager methods
+  @NotNull
   @Override
   public String getSelectionBackground() {
     return null;
@@ -71,6 +71,7 @@ public abstract class MTAbstractTheme implements LafTheme, Serializable, MTTheme
   /**
    * Get disabled color
    */
+  @NotNull
   @Override
   public String getDisabled() {
     return null;
