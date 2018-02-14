@@ -442,7 +442,9 @@ public final class MTThemeManager {
     uiDefaults.put("Tree.ancestorInputMap", null);
     final FontUIResource uiFont = new FontUIResource(fontFace, Font.PLAIN, fontSize);
     final FontUIResource textFont = new FontUIResource("Serif", Font.PLAIN, fontSize);
-    final FontUIResource monoFont = new FontUIResource("Fira Code", Font.PLAIN, fontSize);
+
+    final String monospaceFont = ObjectUtils.notNull(EditorColorsManager.getInstance().getGlobalScheme().getEditorFontName(), "Fira Code");
+    final FontUIResource monoFont = new FontUIResource(monospaceFont, Font.PLAIN, fontSize);
 
     for (final String fontResource : MTThemeManager.FONT_RESOURCES) {
       uiDefaults.put(fontResource, uiFont);
