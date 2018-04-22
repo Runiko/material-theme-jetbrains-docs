@@ -128,9 +128,6 @@ public final class MTLafComponent extends JBPanel implements ApplicationComponen
 
     UIManager.put("Button.border", new MTButtonPainter());
 
-    UIManager.put("OptionButtonUI", MTOptionButtonUI.class.getName());
-    UIManager.getDefaults().put(MTOptionButtonUI.class.getName(), MTOptionButtonUI.class);
-
     UIManager.put("OnOffButtonUI", MTOnOffButtonUI.class.getName());
     UIManager.put(MTOnOffButtonUI.class.getName(), MTOnOffButtonUI.class);
   }
@@ -307,7 +304,6 @@ public final class MTLafComponent extends JBPanel implements ApplicationComponen
     UIManager.put("Spinner.border", new DarculaSpinnerBorder());
 
     UIManager.put("TreeUI", DarculaTreeUI.class.getName());
-    UIManager.put("OptionButtonUI", DarculaOptionButtonUI.class.getName());
   }
 
   private void installLightDefaults() {
@@ -352,7 +348,6 @@ public final class MTLafComponent extends JBPanel implements ApplicationComponen
     UIManager.put("Spinner.border", new DarculaSpinnerBorder());
 
     UIManager.put("TreeUI", DarculaTreeUI.class.getName());
-    UIManager.put("OptionButtonUI", DarculaOptionButtonUI.class.getName());
   }
 
   private Icon getIcon(final String icon) {
