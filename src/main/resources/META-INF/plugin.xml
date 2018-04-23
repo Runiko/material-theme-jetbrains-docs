@@ -24,8 +24,8 @@
   -->
 
 <idea-plugin>
-    <id>com.chrisrm.idea.MaterialThemeUI</id>
-    <name>Material Theme UI</name>
+    <id>com.chrisrm.idea.MaterialThemeUIAndroid</id>
+    <name>Material Theme UI for Android Studio</name>
     <version>@version@</version>
     <vendor email="heliosaian@gmail.com" url="https://github.com/mallowigi">Mallowigi</vendor>
 
@@ -41,7 +41,7 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.ultimate</depends>
+    <depends>com.intellij.modules.androidstudio</depends>
     <depends optional="true" config-file="php.xml">com.jetbrains.php</depends>
     <depends optional="true" config-file="ruby.xml">com.intellij.modules.ruby</depends>
 
