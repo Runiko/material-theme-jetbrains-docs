@@ -1,0 +1,21 @@
+<li class="card themed single {{ theme.className }}" markdown="0"
+    style="background: {{ theme.background }}; color: {{ theme.foreground }}"
+>
+  <div class="card-content">
+    <span class="card-title">{{ theme.name | capitalize }}</span>
+    <p>Background: {{ theme.background }}</p>
+    <p>Foreground: {{ theme.foreground }}</p>
+    <p>Text: {{ theme.text }}</p>
+    <p>Selection Background: {{ theme.selectBg }}</p>
+    <p>Selection Foreground: {{ theme.selectFg }}</p>
+    <p>Buttons: {{ theme.inactive }}</p>
+    <p>Second Background: {{ theme.second }}</p>
+    <p>Disabled: {{ theme.disabled }}</p>
+    <p>Contrast: {{ theme.contrast }}</p>
+    <p>Active: {{ theme.table }}</p>
+    <p>Border: {{ theme.misc1 }}</p>
+    <p>Highlight: {{ theme.misc2 }}</p>
+    <p>Tree: {{ theme.tree }}</p>
+    <p>Notifications: {{ theme.notif }}</p>
+  </div>
+</li>

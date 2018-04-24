@@ -1,0 +1,27 @@
+- title: Introduction
+- title: Getting Started
+
+- title: Configuration
+  pages:
+    - title: Settings
+    - title: Color Schemes
+    - title: Tab Settings
+    - title: Panel Settings
+    - title: Component Settings
+    - title: Quick Actions Panel
+    - title: Excluded Files Colors
+    - title: File Status Colors
+    - title: Accents
+    - title: Custom Themes
+
+- title: Reference
+  pages:
+    - title: Color Palette
+    - title: File Icons
+    - title: Components
+
+- title: Development
+  pages:
+    - title: Installation
+
+- title: Acknowledgements

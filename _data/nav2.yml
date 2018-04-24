@@ -1,0 +1,38 @@
+- title: Introduction
+- title: Getting Started
+
+- title: Configuration
+  pages:
+    - title: Settings
+    - title: Color Schemes
+    - title: Excluded Files Colors
+    - title: File Status Colors
+    - title: Contrast Mode
+    - title: Custom Wallpaper
+    - title: Custom Accents
+    - title: Custom Themes
+    - title: Other Tweaks
+
+- title: Development
+  pages:
+    - title: Installation
+    - title: Color Schemes
+    - title: Icon Associations
+    - title: Themes
+
+- title: Reference
+  pages:
+    - title: Material Components
+    - title: Color Palette
+    - title: File Icons
+    - title: UI Icons
+
+- title: Showcase
+  pages:
+    - title: Theme Gallery
+    - theme: Submit Theme
+
+- title: Roadmap
+- title: Contributing
+- title: Changelog
+- title: Acknowledgements

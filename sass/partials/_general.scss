@@ -1,0 +1,112 @@
+/**
+  Global Styles and classes
+ */
+body {
+  transition: .3s all ease-in-out;
+  @include flexbox(column, wrap, center, flex-start);
+  margin-top: $header-size;
+  min-height: 100vh;
+
+  @media all and (max-width: $from-noslogan-to-icon) {
+    margin-top: $header-size-condensed;
+  }
+}
+
+.muted {
+  color: transparentize($primary-color, $opacity);
+}
+
+.center-image img {
+  margin: 0 auto;
+  display: block;
+}
+
+.btn {
+  @include button($accent-color, btn);
+  font-weight: 400;
+  color: white !important;
+
+  &.-large {
+    padding: 1rem 2rem;
+    line-height: 2rem;
+    height: 4rem;
+    font-size: large;
+  }
+}
+
+.btn-flat {
+  @include button($accent-color, flat);
+}
+
+// headings. Because that's faster than writing each of them separately.
+@for $i from 1 through 6 {
+  $fontsize: ($h1-fontsize + 0.64) - ($i * 0.64);
+  h#{$i} {
+    font-weight: 300;
+    font-size: $fontsize;
+    line-height: 1.1*$fontsize;
+    margin: ($fontsize / 2) 0 ($fontsize / 2.5) 0;
+    a {
+      font-weight: inherit;
+    }
+  }
+}
+
+code {
+  border: solid 1px $code-border;
+  background: $code-bg;
+  border-radius: 4px;
+  font-size: smaller;
+  padding: 2px 4px;
+
+  .highlight & {
+    border: none;
+    background: none;
+    border-radius: 0;
+  }
+}
+
+// responsive video (Format 16:9)
+.video-container {
+  @include paddinghack(100%, 16, 9, "iframe");
+}
+
+// The main container
+.main {
+  padding-top: 50px;
+  width: 100%;
+  @media screen and (max-width: $from-noslogan-to-icon) {
+    padding-top: 0;
+  }
+}
+
+// footnotes
+.footnotes {
+  border-top: $line;
+  font-size: .9em;
+  margin-top: 40px;
+}
+
+// 404 error msg
+.error {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+// Screenshots of the plugin
+.screenshot {
+  width: 100%;
+  padding-top: 60%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.call-to-action {
+  margin: 1rem 0;
+}
+
+.multi-column-3 {
+  column-count: 3;
+}

@@ -1,0 +1,169 @@
+$themes: (
+  "oceanic": (
+    "bg": $oceanic-bg,
+    "fg": $oceanic-fg,
+    "ct": $oceanic-contrast
+  ),
+  "darker": (
+    "bg": $darker-bg,
+    "fg": $darker-fg,
+    "ct": $darker-contrast
+  ),
+  "palenight": (
+    "bg": $palenight-bg,
+    "fg": $palenight-fg,
+    "ct": $palenight-contrast
+  ),
+  "lighter": (
+    "bg": $lighter-bg,
+    "fg": $lighter-fg,
+    "ct": $lighter-contrast
+  ),
+  "monokai": (
+    "bg": $monokai-bg,
+    "fg": $monokai-fg,
+    "ct": $monokai-contrast
+  ),
+  "arcdark": (
+    "bg": $arcdark-bg,
+    "fg": $arcdark-fg,
+    "ct": $arcdark-contrast
+  ),
+  "onedark": (
+    "bg": $onedark-bg,
+    "fg": $onedark-fg,
+    "ct": $onedark-contrast
+  ),
+  "solardark": (
+    "bg": $solardark-bg,
+    "fg": $solardark-fg,
+    "ct": $solardark-contrast
+  ),
+  "solarlight": (
+    "bg": $solarlight-bg,
+    "fg": $solarlight-fg,
+    "ct": $solarlight-contrast
+  ),
+);
+
+@each $name, $theme in $themes {
+  body.#{$name} {
+    .front-page {
+      background-color: map-get($theme, "bg");
+      color: map-get($theme, "fg");
+    }
+
+    .header,
+    .footer {
+      background-color: map-get($theme, "bg");
+    }
+    .main-menu,
+    .menu,
+    .footer {
+      background-color: map-get($theme, "ct");
+      color: map-get($theme, "fg");
+
+      a {
+        color: map-get($theme, "fg");
+        &:hover {
+          color: $accent-color;
+        }
+      }
+
+      .navbar > li {
+        &:hover {
+          background: map-get($theme, "bg");
+        }
+      }
+    }
+
+    .muted {
+      color: transparentize(map-get($theme, "fg"), $opacity);
+    }
+
+    .logo-caption,
+    .logo-description,
+    .section-title,
+    .post-title,
+    .post-caption {
+      color: map-get($theme, "fg");
+      fill: map-get($theme, "fg");
+    }
+
+    .contents {
+      background-color: map-get($theme, "bg");
+      color: map-get($theme, "fg");
+    }
+
+    .screenshot {
+      background: url(../../img/#{$name}.png), url(../../img/laptop.png);
+      background-repeat: no-repeat, no-repeat;
+      background-size: 75%, contain;
+      background-position: 50% 30%, top left;
+      display: none;
+
+      &.#{$name} {
+        display: block;
+      }
+    }
+
+    .logo-img {
+      background-image: url(../../img/material-#{$name}.svg), url(../../img/material-oceanic.svg);
+      margin: 1em auto;
+
+      &.-error {
+        transform: rotate(25deg) translateY(-10px);
+        filter: grayscale(100%);
+      }
+    }
+
+    .sidebar-toggle {
+      background: map-get($theme, "bg");
+      &:hover {
+        background: darken(map-get($theme, "bg"), 7%);
+      }
+      i {
+        color: map-get($theme, "fg");
+      }
+    }
+
+    .sidebar {
+      background: map-get($theme, "ct");
+      color: map-get($theme, "fg");
+
+      .sidebar-link-group a:hover {
+        background-color: map-get($theme, "bg");
+      }
+
+      .sidebar-link-group.active > li > a,
+      .link-section.active > a {
+        background-color: map-get($theme, "bg");
+      }
+
+      .link-section.active > a {
+        color: $second-accent-color;
+      }
+
+      a {
+        color: adjust-color(map-get($theme, "bg"));
+        &:hover {
+          color: $second-accent-color;
+        }
+      }
+    }
+
+    .docs-header {
+      background: $second-accent-color;
+      color: adjust-color(map-get($theme, "bg"));
+    }
+
+    .github-ribbon {
+      position: absolute;
+      top: 0;
+      border: 0;
+      right: 0;
+      fill: $accent-color;
+      color: #fff;
+    }
+  }
+}

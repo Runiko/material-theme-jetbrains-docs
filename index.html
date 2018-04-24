@@ -1,0 +1,72 @@
+---
+layout: index
+---
+<div class="content-container">
+  <div class="contents">
+    <!-- Theme -->
+    <section class="section theme-section">
+      <!-- Theme Chooser -->
+      <div class="theme-chooser">
+        <h3 class="theme-chooser-title section-title">Select a theme</h3>
+        <div class="theme-chooser-options">
+          {% for theme in site.data.themes.material %}
+            <div>
+              <a href="void:javascript(0)"
+                 style="background: {{ theme.background }}"
+                 class="theme {{ theme.className }} js-theme"
+                 title="{{ theme.name }}"
+                 data-theme-class="{{ theme.className }}">
+              </a>
+              <p class="theme-name">{{ theme.name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Screen -->
+      {% for theme in site.data.themes.material %}
+        <a href="/img/{{ theme.className }}.png" target="_blank"
+           class="screenshot {{ theme.className }}"></a>
+      {% endfor %}
+      
+      {% for theme in site.data.themes.other %}
+        <a href="/img/oceanic.png" target="_blank"
+           class="screenshot {{ theme.className }}"></a>
+      {% endfor %}
+      
+      <div class="theme-chooser">
+        <h3 class="theme-chooser-title section-title">Check out those other themes:</h3>
+        
+        <div class="theme-chooser-options">
+          {% for theme in site.data.themes.other %}
+            <div>
+              <a href="void:javascript(0)"
+                 style="background: {{ theme.background }}"
+                 class="theme {{ theme.className }} js-theme"
+                 title="{{ theme.name }}"
+                 data-theme-class="{{ theme.className }}">
+              </a>
+              <p class="theme-name">{{ theme.name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="section features-section">
+      <h2 class="features-title section-title">Features</h2>
+      <div class="features articles">
+        {% for feat in site.features %}
+          {% include feature.html %}
+        {% endfor %}
+      </div>
+      <a href="https://plugins.jetbrains.com/plugin/8006-material-theme-ui" class="call-to-action" ̃>
+        <button class="btn -large">
+          Download
+        </button>
+      </a>
+    </section>
+  
+  </div>
+</div>
